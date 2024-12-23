@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from geopy.geocoders import Nominatim
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 @login_required(login_url='/login/')
@@ -12,13 +13,9 @@ def home(request):
     return render(request, 'users/home.html')
 
 
-# users/views.py
-
-
 def login(request):
-    # Redirect if the user is already authenticated
     if request.user.is_authenticated:
-        return redirect('home')  # Change 'home' to your actual home route
+        return redirect('home') 
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -29,7 +26,7 @@ def login(request):
             if user is not None:
                 auth_login(request, user)
                 messages.success(request, "Login successful!")
-                return redirect('home')  # Change 'home' to your actual home route
+                return redirect('home')  
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -74,27 +71,22 @@ def signup(request):
         confirm_password = request.POST.get('confirm_password')
         zip_code = request.POST.get('zip_code')
 
-        # Check if passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match!")
         else:
-            # Check if username or email exists
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Username already exists!")
             elif User.objects.filter(email=email).exists():
                 messages.error(request, "Email already exists!")
             else:
-                # Use geopy to get location based on zip code
                 geolocator = Nominatim(user_agent="myApp")
                 location = geolocator.geocode(zip_code)
                 latitude = location.latitude if location else None
                 longitude = location.longitude if location else None
 
-                # Create the user
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-
-                # Optionally save location data in the user's profile model
+                
                 # profile = user.profile
                 # profile.latitude = latitude
                 # profile.longitude = longitude
