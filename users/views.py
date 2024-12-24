@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from geopy.geocoders import Nominatim
 from django.contrib.auth.decorators import login_required
+from business_portal.utils import is_valid_email
 
+from datetime import date
 # Create your views here.
 
 @login_required(login_url='/login/')
@@ -15,7 +17,7 @@ def home(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('home') 
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -26,13 +28,15 @@ def login(request):
             if user is not None:
                 auth_login(request, user)
                 messages.success(request, "Login successful!")
-                return redirect('home')  
+                return redirect('home')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Username and password are required.")
 
-    return render(request, 'users/login.html')
+    today = date.today()  # Get today's date
+    return render(request, 'users/login.html', {'today': today})
+
 
 
 
@@ -87,11 +91,12 @@ def signup(request):
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
                 
-                # profile = user.profile
-                # profile.latitude = latitude
-                # profile.longitude = longitude
-                # profile.save()
-
+                profile = user.profile
+                profile.role = 'user'
+                profile.latitude = latitude
+                profile.longitude = longitude
+                profile.save()
+                 
                 messages.success(request, "Account created successfully!")
                 return redirect('login')
 

@@ -3,23 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Page</title>
+    <title>Signup Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100 bg-light">
     <form method="POST" class="p-4 border rounded bg-white shadow" style="width: 100%; max-width: 400px;">
         {% csrf_token %}
-        <h2 class="text-center mb-4">Sign Up</h2>
-
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-
+        <div class="text-center mb-4">
+            <img src="https://via.placeholder.com/80" alt="Profile" class="rounded-circle bg-success p-2">
+        </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" class="form-control" required>
@@ -33,74 +26,77 @@
             <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="confirm_password" class="form-label">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="form-control" required>
+            <label for="confirm-password" class="form-label">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="zip_code" class="form-label">Zip Code</label>
-            <input type="text" id="zip_code" name="zip_code" placeholder="Enter your zip code" class="form-control" required>
+            <label for="zip-code" class="form-label">Zip Code</label>
+            <input type="text" id="zip-code" name="zip-code" placeholder="Enter your zip code" class="form-control" required>
         </div>
-
+        <h5>Today's date is: <strong>{{ today|date:"F d, Y" }}</strong></h5>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="ageCheck" required>
+            <label for="ageCheck" class="form-check-label">I am 21 years of age or older</label>
+        </div>
         <button type="submit" class="btn btn-success w-100">Create Account</button>
-        <div class="col-12 text-center mt-3">
-            <p class="mb-2">Already have an account?</p>
-            <a href="{% url 'login' %}" class="text-decoration-none">Log in here</a>
+        <div class="text-center mt-3">
+            <p>Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a></p>
+            <small class="text-muted">** 'Zip Code' required for Deals/Promotion - Localized Offers.</small>
         </div>
     </form>
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Age Verification Modal -->
-<div class="modal fade" id="ageVerificationModal" tabindex="-1" aria-labelledby="ageVerificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ageVerificationModalLabel">Age Verification</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="dob">Please enter your date of birth to verify your age (You must be 21+):</label>
-                <input type="date" id="dob" class="form-control">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="verifyAgeBtn">Verify Age</button>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Age Verification Modal -->
+    <div class="modal fade" id="ageVerificationModal" tabindex="-1" aria-labelledby="ageVerificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ageVerificationModalLabel">Age Verification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="dob">Please enter your date of birth to verify your age (You must be 21+):</label>
+                    <input type="date" id="dob" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="verifyAgeBtn">Verify Age</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Include Bootstrap Bundle JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    // Open the modal on page load
-    window.onload = function() {
-        var modal = new bootstrap.Modal(document.getElementById('ageVerificationModal'), {
-            keyboard: false
+    
+    <!-- Include Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Open the modal on page load
+        window.onload = function() {
+            var modal = new bootstrap.Modal(document.getElementById('ageVerificationModal'), {
+                keyboard: false
+            });
+            modal.show();
+        };
+    
+        // Age verification logic
+        document.getElementById('verifyAgeBtn').addEventListener('click', function() {
+            var dob = document.getElementById('dob').value;
+            var dobDate = new Date(dob);
+            var today = new Date();
+            var age = today.getFullYear() - dobDate.getFullYear();
+            var m = today.getMonth() - dobDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+                age--;
+            }
+    
+            // If age is 21 or older, close the modal
+            if (age >= 21) {
+                var modal = bootstrap.Modal.getInstance(document.getElementById('ageVerificationModal'));
+                modal.hide();
+            } else {
+                alert('You must be at least 21 years old to access this site.');
+            }
         });
-        modal.show();
-    };
-
-    // Age verification logic
-    document.getElementById('verifyAgeBtn').addEventListener('click', function() {
-        var dob = document.getElementById('dob').value;
-        var dobDate = new Date(dob);
-        var today = new Date();
-        var age = today.getFullYear() - dobDate.getFullYear();
-        var m = today.getMonth() - dobDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
-            age--;
-        }
-
-        // If age is 21 or older, close the modal
-        if (age >= 21) {
-            var modal = bootstrap.Modal.getInstance(document.getElementById('ageVerificationModal'));
-            modal.hide();
-        } else {
-            alert('You must be at least 21 years old to access this site.');
-        }
-    });
-</script>
-
+    </script>
 </body>
 </html>
