@@ -9,28 +9,6 @@ from decimal import Decimal, InvalidOperation
 
 
 
-# Create your views here.
-
-# def business_list(request):
-#     search_query = request.GET.get('search', '')
-#     sort_option = request.GET.get('sort', '')
-
-#     businesses = Business.objects.all()
-#     if search_query:
-#         businesses = businesses.filter(name__icontains=search_query)
-#     if sort_option:
-#         businesses = businesses.order_by(sort_option)
-
-    
-#     paginator = Paginator(businesses, 6)  
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-
-#     context = {
-#         'businesses': page_obj
-#     }
-#     return render(request, 'business/business_list.html', context)
-
 
 
 

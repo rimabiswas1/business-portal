@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from business_portal.utils import is_valid_email
 from datetime import datetime
 from .models import *
+from django.contrib.auth.models import User
 
 
 
@@ -43,6 +44,8 @@ def login(request):
     today = date.today()  
     return render(request, 'users/login.html', {'today': today})
 
+
+
 def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -52,62 +55,44 @@ def signup(request):
         zip_code = request.POST.get('zip-code')
         role = request.POST.get('role', 'visitor')
         date_of_birth = request.POST.get('date_of_birth')
-        print(username , email, password, confirm_password, zip_code, role, date_of_birth, )
-        
 
 
-       
+        print(username, email, password, confirm_password, zip_code, role, date_of_birth)
+
+        # Password confirmation check
         if password != confirm_password:
             messages.error(request, "Passwords do not match!")
-            return redirect('signup')
-
-        
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists!")
-            return redirect('signup')
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already exists!")
-            return redirect('signup')
-
-       
-        try:
-            date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date() if date_of_birth else None
-            if date_of_birth:
-               
-                today = datetime.today().date()
-                age = today.year - date_of_birth.year
-                if (today.month, today.day) < (date_of_birth.month, date_of_birth.day):
-                    age -= 1
-                if age < 21:
-                    messages.error(request, "You must be at least 21 years old to register.")
-                    return redirect('signup')
-        except ValueError:
-            messages.error(request, "Invalid date of birth format!")
-            return redirect('signup')
-
-        
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
-
-       
-        profile, created = Profile.objects.get_or_create(
-            user=user,
-            defaults={
-                'zip_code': zip_code,
+            return render(request, 'users/signup.html', {
+                'username': username, 
+                'email': email, 
+                'zip_code': zip_code, 
                 'role': role,
-                'date_of_birth': date_of_birth,
-                'user_type': role,
-            }
-        )
-        if not created:
-            messages.error(request, "Profile already exists for this user.")
-            return redirect('signup')
+                'date_of_birth': date_of_birth
+            })
 
-        messages.success(request, "Account created successfully!")
+        # Create user
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password)
+        except Exception as e:
+            messages.error(request, f"Error creating user: {str(e)}")
+            return render(request, 'users/signup.html')
+
+        # Assign profile fields
+        profile = user.profile  # Assuming a one-to-one relationship via a signal
+        profile.zip_code = zip_code
+        profile.role = role
+        
+        profile.save()
+
+        messages.success(request, "Account created successfully! Please log in.")
         return redirect('login')
 
     return render(request, 'users/signup.html')
+
+
+
+
+
 
 
 

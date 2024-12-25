@@ -9,7 +9,6 @@ class Profile(models.Model):
         ('writer', 'Writer'),
         ('business', 'Business'),
     ]
-    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=10, choices=USER_TYPES, default='visitor')
     zip_code = models.CharField(max_length=10, blank=True, null=True)
@@ -31,11 +30,8 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
- 
-
 class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
-
     business_name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     category = models.CharField(max_length=100)
@@ -49,8 +45,6 @@ class Business(models.Model):
     def __str__(self):
         return self.business_name
     
-
-
 class Rating(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name='ratings')
     review = models.TextField(blank=True, null=True)
