@@ -1,0 +1,39 @@
+<!-- business_information.html -->
+{% extends 'users/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <!-- Business Info Section -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ business.business_name }}</h4>
+                <p class="card-text"><strong>Description:</strong> {{ business.description }}</p>
+                <p class="card-text"><strong>Category:</strong> {{ business.category }}</p>
+                <p class="card-text"><strong>Address:</strong> {{ business.address }}</p>
+                <p class="card-text"><strong>Phone:</strong> {{ business.phone }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ business.email }}</p>
+                <p class="card-text"><strong>Registered:</strong> {{ business.date_registered }}</p>
+                <p class="card-text"><strong>Location:</strong> Latitude: {{ business.latitude }}, Longitude: {{ business.longitude }}</p>
+            </div>
+        </div>
+
+        <!-- Ratings Section -->
+        <div class="mt-4">
+            <h5>Ratings</h5>
+            {% if ratings %}
+                <div class="list-group">
+                    {% for rating in ratings %}
+                        <div class="list-group-item">
+                            <strong>Rating:</strong> {{ rating.rating_value }} / 5
+                            <p><strong>Review:</strong> {{ rating.review }}</p>
+                            <p><strong>Deals:</strong> {{ rating.deals }}</p>
+                            <p><small>Added on: {{ rating.date_added }}</small></p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No ratings available for this business.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

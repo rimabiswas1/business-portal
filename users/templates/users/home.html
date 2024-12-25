@@ -1,5 +1,5 @@
 {% extends 'users/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container-fluid content mt-2">
     <!-- Main Content -->
@@ -56,7 +56,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     <div class="image-container">
-                        <img src="images/wine-4903349_1280.jpg" class="card-img-top" alt="Winery">
+                        <img src="{% static 'users/images/wine-4903349_1280.jpg' %}" class="card-img-top" alt="Winery">
                         <a href="#" class="image-overlay">Category 10</a>
                         <a href="#" class="image-badge-sale">On Sale</a>
                     </div>
@@ -66,7 +66,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     <div class="image-container">
-                        <img src="images/brick-724900_1280.jpg" class="card-img-top" alt="Brewery">
+                        <img src="{% static 'users/images/brick-724900_1280.jpg' %}" class="card-img-top" alt="Brewery">
                         <a href="#" class="image-overlay">Brewery</a>
                         <a href="#" class="image-badge-right">Winery</a>
                         <a href="#" class="image-badge">Distillery</a>
@@ -77,7 +77,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     <div class="image-container">
-                        <img src="images/sarlat-510549_1280.jpg" class="card-img-top" alt="Distillery">
+                        <img src="{% static 'users/images/sarlat-510549_1280.jpg' %}" class="card-img-top" alt="Distillery">
                         <a href="#" class="image-overlay">Category 30</a>
                         <a href="#" class="image-badge">Events</a>
                     </div>
@@ -87,7 +87,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card">
                     <div class="image-container">
-                        <img src="images/bar-2588746_1280.jpg" class="card-img-top" alt="Bar">
+                        <img src="{% static 'users/images/bar-2588746_1280.jpg' %}" class="card-img-top" alt="Bar">
                         <a href="#" class="image-overlay">Category 40</a>
                         <a href="#" class="image-badge-right">Opportunity</a>
                         <a href="#" class="image-badge">Happy Hours</a>

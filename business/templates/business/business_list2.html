@@ -1,0 +1,57 @@
+{% extends 'users/base.html' %}
+
+{% block css %}
+<style>
+    .bl-card {
+        margin-bottom: 6px;
+        border: none!important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Search and Sort Filters -->
+        <div class="col-md-12 mb-3">
+            <form method="get">
+                <input type="text" name="search" placeholder="Search businesses..." value="{{ search_query }}" class="form-control" />
+                <select name="sort" class="form-control mt-2">
+                    <option value="">Sort By</option>
+                    <option value="date_registered" {% if sort_option == 'date_registered' %}selected{% endif %}>Date Registered</option>
+                    <option value="business_name" {% if sort_option == 'business_name' %}selected{% endif %}>Business Name</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Apply</button>
+            </form>
+        </div>
+
+        <!-- Business List -->
+        <div class="col-md-8">
+            {% for business in businesses %}
+                <div class="card bl-card">
+                    <div class="card-body">
+                        <h6 class="text-info info card-title">{{ business.business_name }}</h6>
+                        <p class="card-text">{{ business.description|default:"No description available." }}</p>
+                        <p class="card-text"><strong>Category:</strong> {{ business.category }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ business.address }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="page-link">
+                {% if businesses.has_previous %}
+                    <a href="?page={{ businesses.previous_page_number }}&search={{ search_query }}&sort={{ sort_option }}">Previous</a>
+                {% endif %}
+                Page {{ businesses.number }} of {{ businesses.paginator.num_pages }}
+                {% if businesses.has_next %}
+                    <a href="?page={{ businesses.next_page_number }}&search={{ search_query }}&sort={{ sort_option }}">Next</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

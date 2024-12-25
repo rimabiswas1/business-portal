@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center">{{ business.business_name }}</h1>
+    <p><strong>Description:</strong> {{ business.description }}</p>
+    <p><strong>Category:</strong> {{ business.category }}</p>
+    <p><strong>Address:</strong> {{ business.address }}</p>
+    <p><strong>Ratings:</strong> {{ business.ratings }}</p>
+    <p><strong>Review:</strong> {{ business.review }}</p>
+    <p><strong>Phone:</strong> {{ business.phone }}</p>
+    <p><strong>Email:</strong> {{ business.email }}</p>
+    <p><strong>Registered On:</strong> {{ business.date_registered }}</p>
+    <a href="{% url 'business_list' %}" class="btn btn-secondary">Back to Listings</a>
+</div>
+{% endblock %}

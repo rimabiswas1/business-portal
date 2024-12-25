@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="fw-semibold navbar-brand" href="index.html">RC-Zone</a>
+            <a class="fw-semibold navbar-brand" href="{% url 'home' %}">RC-Zone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span> 
@@ -14,6 +14,7 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-lg-1 text-dark" href="#">Resources</a></li>
 <!--Phase 2-->    <!--- <li class="nav-item"><a class="nav-link px-lg-3 py-lg-1 text-dark" href="#">Explorer</a></li>  --->
                     <li class="nav-item"><a class="nav-link px-lg-3 py-lg-1 text-dark" href="blog.html" target="_blank">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-lg-1 text-dark" href="{% url 'business_list' %}" target="_blank">Business List</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item me-2">
@@ -35,7 +36,30 @@
                         </a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="userlogin01.html">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
+                                 width="1.25em" height="1.25em" class="me-2">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 
+                                         12 2s10 4.477 10 10-4.477 10-10 
+                                         10zm-4.987-3.744A7.966 7.966 0 0 
+                                         0 12 20c1.97 0 3.773-.712 
+                                         5.167-1.892A6.979 6.979 0 0 
+                                         0 12.16 16a6.981 6.981 0 0 
+                                         0-5.147 2.256zM5.616 
+                                         16.82A8.975 8.975 0 0 
+                                         1 12.16 14a8.972 8.972 0 0 
+                                         1 6.362 2.634 8 8 0 1 
+                                         0-12.906.187zM12 13a4 4 0 1 
+                                         1 0-8 4 4 0 0 1 0 8zm0-2a2 
+                                         2 0 1 0 0-4 2 2 0 0 0 0 
+                                         4z"></path>
+                            </svg>
+                            Logout
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'signup' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" 
                                  width="1.25em" height="1.25em" class="me-2">
                                 <path fill="none" d="M0 0h24v24H0z"></path>
@@ -55,7 +79,9 @@
                                          4z"></path>
                             </svg>
                             Login/Sign Up
-                        </a> 
+                        </a>
+                    {% endif %}
+                    
                     </li>                         
                 </ul>                     
             </div>                     

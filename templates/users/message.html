@@ -1,28 +1,10 @@
 
 {% if messages %}
+<div class="container mt-3">
     {% for message in messages %}
-        {% if message.tags == 'error' %}
-        <script>
-            Snackbar.show({text: '{{message}}', pos: 'top-right', duration: 5000, backgroundColor: '#f70000'});
-        </script>
-        {% else %}
-        <script>
-            Snackbar.show({text: '{{message}}', pos: 'top-right', duration: 5000});
-        </script>
-        {% endif %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
     {% endfor %}
-{% endif %}
-
-
-
-{% if messages %}
-        <ul class="message">
-            {% for message in messages %}
-                {% if message.tags == 'success' %}
-                <li style="color:green; font-weight:bold;">{{message}}</li>
-                {% elif messages.tags == 'error %}
-                <li style="color:red; font-weight:bold;">{{message}}</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+</div>
 {% endif %}
