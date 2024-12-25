@@ -31,7 +31,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class Business(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     business_name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     category = models.CharField(max_length=100)
