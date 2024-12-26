@@ -8,12 +8,6 @@ from decimal import Decimal, InvalidOperation
 
 
 
-
-
-
-
-
-
 def business_list(request):
    
     search_query = request.GET.get('search', '')
@@ -33,11 +27,6 @@ def business_list(request):
         'sort_option': sort_option,
     }
     return render(request, 'business/business_list.html', context)
-
-
-
-
-
 
 
 
@@ -92,7 +81,6 @@ def business_create(request):
 
 
 
-
 def business_detail(request, business_id):
     
     business = get_object_or_404(Business, id=business_id)
@@ -102,9 +90,6 @@ def business_detail(request, business_id):
         'business': business
     }
     return render(request, 'business/business_detail.html', context)
-
-
-
 
 
 
@@ -138,8 +123,6 @@ def business_registration(request):
             messages.error(request, f"Error registering business: {e}")
 
     return render(request, 'business/business_registration.html')
-
-
 
 
 

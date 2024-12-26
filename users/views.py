@@ -8,14 +8,8 @@ from django.contrib.auth.decorators import login_required
 from business_portal.utils import is_valid_email
 from datetime import datetime
 from .models import *
-from django.contrib.auth.models import User
-
-
-
-
-
 from datetime import date
-# Create your views here.
+
 
 @login_required(login_url='/login/')
 def home(request):
@@ -59,7 +53,6 @@ def signup(request):
 
         print(username, email, password, confirm_password, zip_code, role, date_of_birth)
 
-        # Password confirmation check
         if password != confirm_password:
             messages.error(request, "Passwords do not match!")
             return render(request, 'users/signup.html', {
@@ -70,15 +63,14 @@ def signup(request):
                 'date_of_birth': date_of_birth
             })
 
-        # Create user
+       
         try:
             user = User.objects.create_user(username=username, email=email, password=password)
         except Exception as e:
             messages.error(request, f"Error creating user: {str(e)}")
             return render(request, 'users/signup.html')
 
-        # Assign profile fields
-        profile = user.profile  # Assuming a one-to-one relationship via a signal
+        profile = user.profile  
         profile.zip_code = zip_code
         profile.role = role
         
@@ -88,14 +80,6 @@ def signup(request):
         return redirect('login')
 
     return render(request, 'users/signup.html')
-
-
-
-
-
-
-
-
 
 
 def logout_view(request):
