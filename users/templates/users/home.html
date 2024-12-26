@@ -1,133 +1,209 @@
 {% extends 'users/base.html' %}
-{% load static %}
+
+{% block css %}
+<style>
+    .bl-card {
+        margin-bottom: 6px;
+        border: none!important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid content mt-2">
-        <div id="myCarousel" class="carousel slide mb-1 py-5" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" 
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" 
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" 
-                        aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" 
-                        aria-label="Slide 4"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://picsum.photos/800/100?random=1" class="d-block w-100" 
-                         alt="Carousel Image 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/800/100?random=2" class="d-block w-100" 
-                         alt="Carousel Image 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/800/100?random=3" class="d-block w-100" 
-                         alt="Carousel Image 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://picsum.photos/800/100?random=4" class="d-block w-100" 
-                         alt="Carousel Image 4">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" 
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" 
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="{% static 'users/images/wine-4903349_1280.jpg' %}" class="card-img-top" alt="Winery">
-                        <a href="#" class="image-overlay">Category 10</a>
-                        <a href="#" class="image-badge-sale">On Sale</a>
-                    </div>
+            <div class="col-md-8 mb-3">
+                <h2 class="mb-4">Business Places</h2>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Joe's Pizza</a></h5>
+                    <p>456 Elm St, Springfield, IL 62704</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-1234 |
+                        <strong>Hours:</strong> 11:00 AM - 11:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★☆ |
+                        <strong>Reviews:</strong> (45 reviews) |
+                        <strong>Deals:</strong> Yes/No
+                    </p>
+                    <p>Best pizza in town with fresh ingredients and family recipes... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+    
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Sunny Day Spa</a></h5>
+                    <p>789 Maple Ave, Springfield, IL 62705</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-5678 |
+                        <strong>Hours:</strong> 9:00 AM - 8:00 PM |
+                        <strong class="text-danger">Closed Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★★ |
+                        <strong>Reviews:</strong> (30 reviews)
+                    </p>
+                    <p>Relax and rejuvenate at our full-service spa... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+    
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Tech Garage</a></h5>
+                    <p>1011 Oak St, Springfield, IL 62706</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-9012 |
+                        <strong>Hours:</strong> 8:00 AM - 6:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★☆ |
+                        <strong>Reviews:</strong> (25 reviews)
+                    </p>
+                    <p>Expert automotive repair and maintenance services... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Fit & Finc Gym</a></h5>
+                    <p>202 Health St, Springfield, IL 62707</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-3456 |
+                        <strong>Hours:</strong> 5:00 AM - 10:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★☆ |
+                        <strong>Reviews:</strong> (40 reviews)
+                    </p>
+                    <p>Your neighborhood gym offering state of the art equipment... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Flower Boutique</a></h5>
+                    <p>303 Garden Ln, Springfield, IL 62708</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-7890 |
+                        <strong>Hours:</strong> 9:00 AM - 7:00 PM |
+                        <strong class="text-danger">Closed Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★★ |
+                        <strong>Reviews:</strong> (15 reviews)
+                    </p>
+                    <p>Fresh flowers and custom boutiquets for every ocasion... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Kids World</a></h5>
+                    <p>404 Play Ave, Springfield, IL 62709</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-2345 |
+                        <strong>Hours:</strong> 10:00 AM - 6:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★☆☆ |
+                        <strong>Reviews:</strong> (22 reviews)
+                    </p>
+                    <p>Expert automotive repair and maintenance services... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Book Haven</a></h5>
+                    <p>505 Library Rd, Springfield, IL 62710</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-6789 |
+                        <strong>Hours:</strong> 9:00 AM - 9:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★★ |
+                        <strong>Reviews:</strong> (50 reviews)
+                    </p>
+                    <p>A haven for book lovers with an extensive collection... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Quick Fix Elections</a></h5>
+                    <p>606 Library Rd, Springfield, IL 62711</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-1235 |
+                        <strong>Hours:</strong> 10:00 AM - 8:00 PM |
+                        <strong class="text-success">Open Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★☆ |
+                        <strong>Reviews:</strong> (35 reviews)
+                    </p>
+                    <p>Fast and reliable elections repair services... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Green Thumb Nursery</a></h5>
+                    <p>707 Plant Ave, Springfield, IL 62712</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-5670 |
+                        <strong>Hours:</strong> 8:00 AM - 6:00 PM |
+                        <strong class="text-danger">Closed Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★★ |
+                        <strong>Reviews:</strong> (28 reviews)
+                    </p>
+                    <p>Your source for all things gardening and landscping... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
+                </div>
+                <div class="mb-4">
+                    <h5><a href="#" class="text-primary">Travel Experts</a></h5>
+                    <p>808 Adventure Rd, Springfield, IL 62713</p>
+                    <p>
+                        <strong>Phone:</strong> (217) 555-5670 |
+                        <strong>Hours:</strong> 8:00 AM - 6:00 PM |
+                        <strong class="text-danger">Closed Now</strong>
+                    </p>
+                    <p>
+                        <strong>Rating:</strong> ★★★★☆ |
+                        <strong>Reviews:</strong> (18 reviews)
+                    </p>
+                    <p>Plan your perfect vacation with our expert agents... 
+                        <a href="#" class="text-primary">Read more</a>
+                    </p>
+                    <hr>
                 </div>
             </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="{% static 'users/images/brick-724900_1280.jpg' %}" class="card-img-top" alt="Brewery">
-                        <a href="#" class="image-overlay">Brewery</a>
-                        <a href="#" class="image-badge-right">Winery</a>
-                        <a href="#" class="image-badge">Distillery</a>
-                    </div>
+            <div class="col-lg-3">
+                <div class="border p-3 mb-3">
+                    <div class="text-center">Ad Placeholder</div>
                 </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="{% static 'users/images/sarlat-510549_1280.jpg' %}" class="card-img-top" alt="Distillery">
-                        <a href="#" class="image-overlay">Category 30</a>
-                        <a href="#" class="image-badge">Events</a>
-                    </div>
+                <div class="border p-3 mb-3">
+                    <div class="text-center">Ad Placeholder</div>
                 </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="{% static 'users/images/bar-2588746_1280.jpg' %}" class="card-img-top" alt="Bar">
-                        <a href="#" class="image-overlay">Category 40</a>
-                        <a href="#" class="image-badge-right">Opportunity</a>
-                        <a href="#" class="image-badge">Happy Hours</a>
-                    </div>
+                <div class="border p-3 mb-3" style="height: 250px;">
+                    <div class="text-center">250 x 150</div>
                 </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="https://cdn.pixabay.com/photo/2014/07/31/21/37/bar-406884_1280.jpg" 
-                             class="card-img-top" alt="Bar">
-                        <a href="#" class="image-overlay">Category 50</a>
-                        <a href="#" class="image-badge-right">Opportunity</a>
-                        <a href="#" class="image-badge">Happy Hours</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="https://cdn.pixabay.com/photo/2015/09/14/11/43/restaurant-939435_1280.jpg" 
-                             class="card-img-top" alt="Restaurant">
-                        <a href="#" class="image-overlay">Category 60</a>
-                        <a href="#" class="image-badge">Coupons</a>
-                        <a href="#" class="image-badge">Happy Hours</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="https://cdn.pixabay.com/photo/2018/09/14/19/20/vape-3677946_1280.jpg" 
-                             class="card-img-top" alt="Vaporizing">
-                        <a href="#" class="image-overlay">Category 70</a>
-                        <a href="#" class="image-badge">Events</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="image-container">
-                        <img src="https://cdn.pixabay.com/photo/2016/04/08/15/51/india-1316347_1280.jpg" 
-                             class="card-img-top" alt="Hookah">
-                        <a href="#" class="image-overlay">Category 80</a>
-                        <a href="#" class="image-badge">Events</a>
-                    </div>
+                <div class="border p-3" style="height: 450px;">
+                    <div class="text-center">250 x 450</div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+
+
+    {% endblock %}

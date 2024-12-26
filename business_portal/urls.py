@@ -7,8 +7,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('business/', include('business.urls'))
+    path('', include('users.urls')),
+    path('', include('business.urls'))
 ]
 
 if settings.DEBUG:
